@@ -1,44 +1,21 @@
 package storeProcedureTesting;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Types;
 
 import org.apache.commons.lang3.StringUtils;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
+import org.testng.Assert;
+
 import org.testng.annotations.Test;
 
+import baseTest.BaseTest;
 
 
-import junit.framework.Assert;
+public class Sp_testing extends BaseTest{
 
-public class SpTesting {
-
-	Connection con =null;
-	Statement stmt = null;
-	ResultSet rs;
-	CallableStatement cstmt;
-	ResultSet rs1;
-	ResultSet rs2;
-	
-	@BeforeClass
-	void setup() throws SQLException
-	{
-		con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels","root","root");
-	}
-	
-	
-	@AfterClass
-	void tearDown() throws SQLException
-	{
-		con.close();
-		
-	}
 	
 	@Test(priority=1)
 	void test_storeProceduresExists() throws SQLException
@@ -95,7 +72,7 @@ public class SpTesting {
 	@Test(priority=4)
 	void test_get_order_by_cust() throws SQLException
 	{
-		cstmt=con.prepareCall("{call get_order_by_cust(?,?,?,?,?);}");
+		cstmt=con.prepareCall("{call get_order_by_cust(?,?,?,?,?)}");
 		cstmt.setString(1, "121");
 		
 		cstmt.registerOutParameter( 2, Types.INTEGER);
@@ -103,9 +80,10 @@ public class SpTesting {
 		cstmt.registerOutParameter( 4, Types.INTEGER);
 		cstmt.registerOutParameter( 5, Types.INTEGER);
 		
-		cstmt.execute();
+		cstmt.executeQuery();
 		
 		int shipped=cstmt.getInt(2);
+		System.out.println(shipped);
 		int canceled=cstmt.getInt(3);
 		int resolved=cstmt.getInt(4);
 		int disputed=cstmt.getInt(5);
@@ -113,7 +91,7 @@ public class SpTesting {
 		//System.out.println(shipped + canceled + resolved + disputed);
 		
 		Statement stmt = con.createStatement();
-		rs=stmt.executeQuery("select (SELECT count(*) as 'shipped' FROM orders WHERE customerNumber = 121 AND status = 'Shipped') as Shipped, (SELECT count(*) as 'canceled' FROM orders WHERE customerNumber = 121 AND status = 'Canceled') as Canceled, (SELECT count(*) as 'resolved' FROM orders WHERE customerNumber = 121 AND status = 'Resolved') as Resolved, (SELECT count(*) as 'disputed' FROM orders WHERE customerNumber = 121 AND status = 'Disputed') as Disputed");
+		rs=stmt.executeQuery("select (SELECT count(*) as 'shipped' FROM orders WHERE customerNumber = 121 AND status = 'Shipped') as Shipped, (SELECT count(*) as 'canceled' FROM orders WHERE customerNumber = 121 AND status = 'Canceled') as Canceled, (SELECT count(*) as 'resolved' FROM orders WHERE customerNumber = 121 AND status = 'Resolved') as Resolved, (SELECT count(*) as 'disputed' FROM orders WHERE customerNumber = 121 AND status = 'Disputed') as Disputed;");
 		
 		rs.next();
 		
@@ -135,23 +113,23 @@ public class SpTesting {
 	@Test(priority=5)
 	void test_SetCustomerShipping() throws SQLException
 	{
-		cstmt=con.prepareCall("{CALL SetCustomerShipping(?,?);}");
+		cstmt=con.prepareCall("{CALL SetCustomerShipping(?,?)}");
 		cstmt.setString(1, "141");
 		cstmt.registerOutParameter( 2, Types.VARCHAR);
 		
 		
 		cstmt.execute();
 		
-		String shippingTime=cstmt.getString(2);
+		String ShippingTime=cstmt.getString(2);
 		
 		Statement stmt = con.createStatement();
 		rs=stmt.executeQuery("SELECT country, CASE WHEN country='USA' THEN '2-day Shipping' WHEN country = 'Canada' THEN '3-day Shipping' ELSE '5-day Shipping' END as ShippingTime FROM customers WHERE customerNumber =141;");
 		
 		rs.next();
 		
-		String exp_shippingTime=rs.getString("shippingTime");
+		String exp_ShippingTime=rs.getString("ShippingTime");
 		
-		Assert.assertEquals(shippingTime, exp_shippingTime);
+		Assert.assertEquals(ShippingTime, exp_ShippingTime);
 	}
 	
 	

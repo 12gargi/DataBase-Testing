@@ -2,37 +2,16 @@ package triggertesting;
 
 
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.DriverManager;
+import baseTest.BaseTest;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class trigtests {
+public class trigtests extends BaseTest {
 
-	Connection con =null;
-	ResultSet rs;
-	CallableStatement cstmt;
-
-	    @BeforeClass
-		void setup() throws SQLException
-		{
-			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels","root","root");
-		}
-		
-		
-		@AfterClass
-		void tearDown() throws SQLException
-		{
-			con.close();
-			
-		}
-		
 		
 	    @Test(priority=1)
 	    void test_TotalCapacityUpdate() throws SQLException {
