@@ -11,14 +11,14 @@ import org.testng.Assert;
 
 import org.testng.annotations.Test;
 
-import baseTest.BaseTest;
+import source.BaseTest;
 
 
-public class Sp_testing extends BaseTest{
+public class StoreProcedureTests extends BaseTest{
 
 	
 	@Test(priority=1)
-	void test_storeProceduresExists() throws SQLException
+	public void test_storeProceduresExists() throws SQLException
 	{
 		stmt=con.createStatement();
 		rs=stmt.executeQuery("SHOW PROCEDURE STATUS WHERE Name = 'SelectAllcustomer'");
@@ -27,7 +27,7 @@ public class Sp_testing extends BaseTest{
 	}
 	
 	@Test(priority=2)
-	void test_selectAllCustomers() throws SQLException
+	public void test_selectAllCustomers() throws SQLException
 	{
 		cstmt = con.prepareCall("{call SelectAllcustomer}");
 		rs1=cstmt.executeQuery();
@@ -56,7 +56,7 @@ public class Sp_testing extends BaseTest{
 	}
 	
 	@Test(priority=3)
-	void test_SelectAllCustomersByCityAndPin() throws SQLException
+	public void test_SelectAllCustomersByCityAndPin() throws SQLException
 	{
 		cstmt = con.prepareCall("{call SelectAllCustomerByCityAndPin(?,?)}");
 		cstmt.setString(1,"Singapore");
@@ -70,7 +70,7 @@ public class Sp_testing extends BaseTest{
 	}
 	
 	@Test(priority=4)
-	void test_get_order_by_cust() throws SQLException
+	public void test_get_order_by_cust() throws SQLException
 	{
 		cstmt=con.prepareCall("{call get_order_by_cust(?,?,?,?,?)}");
 		cstmt.setString(1, "121");
@@ -79,7 +79,7 @@ public class Sp_testing extends BaseTest{
 		cstmt.registerOutParameter( 3, Types.INTEGER);
 		cstmt.registerOutParameter( 4, Types.INTEGER);
 		cstmt.registerOutParameter( 5, Types.INTEGER);
-		
+
 		cstmt.executeQuery();
 		
 		int shipped=cstmt.getInt(2);
@@ -111,7 +111,7 @@ public class Sp_testing extends BaseTest{
 	
 	
 	@Test(priority=5)
-	void test_SetCustomerShipping() throws SQLException
+	public void test_SetCustomerShipping() throws SQLException
 	{
 		cstmt=con.prepareCall("{CALL SetCustomerShipping(?,?)}");
 		cstmt.setString(1, "141");

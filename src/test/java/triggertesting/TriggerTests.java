@@ -4,17 +4,17 @@ package triggertesting;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import baseTest.BaseTest;
+import source.BaseTest;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class trigtests extends BaseTest {
+public class TriggerTests extends BaseTest {
 
 		
 	    @Test(priority=1)
-	    void test_TotalCapacityUpdate() throws SQLException {
+	    public void test_TotalCapacityUpdate() throws SQLException {
 	      
 	            Statement stmt = con.createStatement();
 	            stmt.executeUpdate("INSERT INTO WorkCenters(name, capacity) VALUES('World Machine', 100)");
@@ -30,7 +30,7 @@ public class trigtests extends BaseTest {
 	    }
 	    
 	    @Test(priority=2)
-	    void test_TotalCapacityInsertion() throws SQLException
+	    public void test_TotalCapacityInsertion() throws SQLException
 	    {
 
             Statement stmt = con.createStatement();
@@ -49,7 +49,7 @@ public class trigtests extends BaseTest {
 	    }
 	    
 	    @Test(priority=3)
-	    void test_TriggerExecutionOrder() throws SQLException
+	    public void test_TriggerExecutionOrder() throws SQLException
 	    {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO WorkCenters(name, capacity) VALUES('World Machine', 200)");
@@ -71,7 +71,7 @@ public class trigtests extends BaseTest {
 	    }
 	    
 	    @Test(priority=4)
-	    void test_TriggerBehaviorWithMultipleWorkCenters() throws SQLException
+	    public void test_TriggerBehaviorWithMultipleWorkCenters() throws SQLException
 	    {
             Statement stmt = con.createStatement();
             stmt.executeUpdate("INSERT INTO WorkCenters(name, capacity) VALUES('WorkCenter1', 100)");
