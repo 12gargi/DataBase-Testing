@@ -48,7 +48,7 @@ To get started with the project, follow these steps:
 
 **Clone the Repository:**
 
-git clone:  https://github.com/TestrigTechnologies/training24_java_selenium.git
+git clone:  https://github.com/12gargi/DataBase-Testing.git
 
 **Install Dependencies :**  cd your_repository  ,
                           mvn clean install 
