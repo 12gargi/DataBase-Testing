@@ -56,7 +56,8 @@ public class BaseTest {
 	
 	@BeforeClass
     public void setup() throws SQLException {
-    	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "root");
+    	String url = "jdbc:mysql://google/classicmodels?cloudSqlInstance=your-project-id:your-region:your-instance-id&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=root";
+        con = DriverManager.getConnection(url);
     }
 	
 	
