@@ -26,3 +26,14 @@ jobs:
 
       - name: Database Testing
         run: mvn test -Dtest=SchemaTests,StoreProcedureTests,TriggerTests
+
+      - name: Generate HTML REPORT FROM SUREFIRE_REPORTS
+        run: mvn surefire-report:report-only
+        continue-on-error: true
+        
+ 
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v4
+        with:
+          name: HTML-REPORT
+          path: target/site/
