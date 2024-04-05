@@ -52,6 +52,8 @@
   <version>5.0.9</version>
 </dependency>
 
+	    </dependencies>
+
     <build>
 
 	<plugins>
@@ -82,7 +84,4 @@
 </plugins>	<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 
 		</build>	
-
-
-  </dependencies>
 </project>
