@@ -16,7 +16,8 @@ This repository houses a comprehensive automation testing suite for Classicmodel
 
 the project structure is given below:
 
-![Screenshot (33)](https://github.com/12gargi/DataBase-Testing/assets/97431292/d71ef153-9fc7-418f-ad40-34cd62117caa)
+![Screenshot (34)](https://github.com/12gargi/DataBase-Testing/assets/97431292/abc9b619-dba7-48b1-8f17-9b39893d6647)
+
 
 -**Project Contains :**
 

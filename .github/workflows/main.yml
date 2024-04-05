@@ -8,21 +8,26 @@ on:
     branches:
       - main
 
-
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout codes
-        uses: actions/checkout@v4
-      
-      - name: Set up JDK 17
-        uses: actions/setup-java@v4
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-          cache: maven
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Download dependencies
+        run: mvn dependency:go-offline
 
       - name: Database Testing
         run: mvn test -Dtest=SchemaTests,StoreProcedureTests,TriggerTests
+
+      - name: Generate HTML REPORT FROM SUREFIRE_REPORTS
+        run: mvn surefire-report:report-only
+        continue-on-error: true
+
+      - name: Upload HTML Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: HTML-REPORT
+          path: target/site/
