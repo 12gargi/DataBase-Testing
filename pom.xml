@@ -69,16 +69,21 @@
         </configuration>
       </plugin>
    <plugin>
-  <groupId>org.apache.maven.plugins</groupId>
-  <artifactId>maven-compiler-plugin</artifactId>
-  <version>3.8.0</version>
-  <configuration>
-    <compilerArgs>
-      <arg>--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
-    </compilerArgs>
-  </configuration>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-compiler-plugin</artifactId>
+    <version>3.8.0</version>
+    <configuration>
+        <source>11</source>
+        <target>11</target>
+        <annotationProcessorPaths>
+            <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>{latest_lombok_version}</version>
+            </path>
+        </annotationProcessorPaths>
+    </configuration>
 </plugin>
-
 	</plugins>
 	<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 </build>	
