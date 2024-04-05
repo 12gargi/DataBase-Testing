@@ -71,7 +71,7 @@
     <plugin>
       <groupId>org.apache.maven.plugins</groupId>
       <artifactId>maven-compiler-plugin</artifactId>
-      <version>3.8.1</version>
+      <version>3.9.0</version>
       <configuration>
         <compilerArguments>
           <processorPath>
@@ -79,8 +79,7 @@
           </processorPath>
         </compilerArguments>
       </configuration>
-    </plugin>
-  
+    </plugin>  
 </plugins>	<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-surefire-plugin -->
 
 		</build>	
