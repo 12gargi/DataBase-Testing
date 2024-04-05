@@ -75,13 +75,6 @@
     <configuration>
         <source>11</source>
         <target>11</target>
-        <annotationProcessorPaths>
-            <path>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-                <version>{latest_lombok_version}</version>
-            </path>
-        </annotationProcessorPaths>
     </configuration>
 </plugin>
         <plugin>
