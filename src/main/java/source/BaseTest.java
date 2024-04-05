@@ -13,7 +13,7 @@ import java.sql.Statement;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.AfterSuite;
+import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
@@ -52,20 +52,16 @@ public class BaseTest {
 		sparkReporter.config().setTheme(Theme.DARK);
 		sparkReporter.config().setDocumentTitle("Database Testing Report");
 		sparkReporter.config().setReportName("Framework test");
-		System.out.println("in before test");
-		
 	}
 	
 	@BeforeClass
     public void setup() throws SQLException {
     	con = DriverManager.getConnection("jdbc:mysql://localhost:3306/classicmodels", "root", "root");
-    	System.out.println("in before class");
     }
 	
 	
 	@BeforeMethod
 	public void beforeMethodMethod( Method testmethod) {
-		System.out.println("in before method");
 		logger = extent.createTest(testmethod.getName());
 		
 	}
@@ -87,7 +83,6 @@ public class BaseTest {
 					MarkupHelper.createLabel(result.getName() + " - Test case pass", ExtentColor.GREEN));
 		}
 		
-		System.out.println("in after method");
 	}
 
     
@@ -98,12 +93,11 @@ public class BaseTest {
             con.close();
         }
         
-        System.out.println("in after class");
     }
     
-    @AfterSuite
+    @AfterTest
 	public void afterTest() {
 		extent.flush();
-		System.out.println("in after test");
+		
 	}
 }

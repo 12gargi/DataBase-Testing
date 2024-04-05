@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+  <test thread-count="5" name="BaseTest">
+    <classes>
+    <class name="triggertesting.TriggerTests"/>
+  
+      </classes>
+         </test>
+      <test thread-count="5" name="BasTest">
+       <classes>
+       <class name="storeProcedureTesting.StoreProcedureTests"/>
+        </classes>
+        
+         </test>
+         
+          <test thread-count="5" name="BaTest">
+          <classes>
+          
+      <class name="schemaTesting.SchemaTests"/> 
+    <!--    <class name="schemaTesting.Sc_employeesTable"/> 
+      <class name="schemaTesting.Sc_officesTable"/> 
+      <class name="schemaTesting.Sc_orderdetailsTable"/> -->
+       </classes>
+       </test>
+   <!--    <class name="source.BaseTest"/> --> 
+   
+ <!-- Test -->
+</suite> <!-- Suite -->

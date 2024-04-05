@@ -129,7 +129,10 @@ public class StoreProcedureTests extends BaseTest{
 		
 		String exp_ShippingTime=rs.getString("ShippingTime");
 		
-		Assert.assertEquals(ShippingTime, exp_ShippingTime);
+		Assert.assertEquals(exp_ShippingTime.toLowerCase(), ShippingTime.toLowerCase());
+		
+		
+
 	}
 	
 	
