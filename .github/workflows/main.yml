@@ -25,7 +25,7 @@ jobs:
           mysql: '8.0'
           mysql-database: 'classicmodels'
           mysql-root-password: ${{ secrets.MYSQL_PASSWORD }}
-          mysql-user: 'developer'
+          mysql-user: 'root'
           mysql-password: ${{ secrets.MYSQL_PASSWORD }}
          
 
