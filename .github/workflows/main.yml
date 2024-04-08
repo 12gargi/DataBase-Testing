@@ -16,11 +16,18 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
 
+      - name: Shutdown Ubuntu MySQL (SUDO)
+        run: sudo service mysql stop
+
       - name: Set up MySQL
-        uses: helaili/setup-mysql@v1
+        uses: mirromutth/mysql-action@v1.1
         with:
-          mysql-version: '8.0'
-          password: ${{ secrets.MYSQL_PASSWORD }}
+          mysql: '8.0'
+          mysql-database: 'classicmodels'
+          mysql-root-password: ${{ secrets.MYSQL_PASSWORD }}
+          mysql-user: 'developer'
+          mysql-password: ${{ secrets.MYSQL_PASSWORD }}
+         
 
       - name: Download dependencies
         run: mvn dependency:go-offline
