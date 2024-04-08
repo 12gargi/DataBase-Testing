@@ -56,7 +56,7 @@ public class BaseTest {
 	
 	@BeforeClass
     public void setup() throws SQLException {
-    	String url = "jdbc:mysql://localhost:3306/classicmodels";
+    	String url = "jdbc:MySQL://localhost:3306/classicmodels";
         String username = "root";
         String password = "root";
         con = DriverManager.getConnection(url, username, password);
