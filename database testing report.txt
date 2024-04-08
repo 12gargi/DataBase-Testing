@@ -1,0 +1,39 @@
+**************************Database testing*******************************
+
+1.what is it?
+  Validating the data that is displayed on the UI is matching with the data that is stored in the
+   database.
+  Ensures that data store is valid,consistent and secure.
+
+2 database:
+  collection of related data. 
+
+3.DBMS:
+  In storing the related data in the database in an organized manner to make it easier to CRUD in the database.
+
+-DataBase Testing revolves around 4 major things 
+ a)Data Mapping: data mapping is ussually done in frontend data testing where data is mapped from the UI of the application with database. It checks that whether all frontend data is stored 
+  correctly in th database
+
+ b)ACID Properties: Acid properties are:
+
+    i)Atomicity : let assume there are two peoples A and B .When transaction is initiated between A&B ,Cash is debited form A's account at same time amount is credited 
+                  B's account.it either processes the transaction in one go.If something goes wrong while transaction, atomicity makes sure that everything goes back to
+                  how it was before, so nothing gets messed up.
+
+   ii)Consistency:consitency validates that data is accurate,valid and reliable .if data is consistent means data follows valid rules,standards and expectations.if 100Rs are debited from A's
+                  account but not credited to B's account, it would result in a loss of 100Rs, causing an inconsistency in the data. Similarly, if 100Rs are credited to B's account but not debited from A's account,
+                  it would result in an unjustified increase in B's account balance, also causing an inconsistency in the data. Therefore, it is essential to ensure that both operations are executed atomically and 
+                  consistently to maintain data consistency. thats how consistent the transaction happen.
+
+   iii)Isolation : isolation ensures that multiple transactiondoes not interfere with each other.
+
+   iv) Durability : data is persistent, so after transaction data should be stored properly is the database.
+
+ c)Data integrity : integrity is achieved when the data is capable of doing CRUD operation that are {Create ,Read,update ,delete}.
+
+ d)Buissness rules: they dictate how data should be stored, processed, and accessed. For example, just like in a game where you have rules to follow to play fairly, in a database, 
+                    there are rules that ensure data is handled correctly and consistently.
+
+4.to have a handson on database testing i had used classicmodels database and created set of schemas, store procedures and triggers and created testcase on them and also 
+  automated them.
