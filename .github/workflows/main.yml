@@ -20,13 +20,7 @@ jobs:
         run: sudo service mysql stop
 
       - name: Set up MySQL
-        uses: mirromutth/mysql-action@v1.1
-        with:
-          mysql: '8.0'
-          mysql-database: 'classicmodels'
-          mysql-root-password: ${{ secrets.MYSQL_PASSWORD }}
-          mysql-superuser: 'root'
-         
+        uses: mirromutth/mysql-action@v1.1 
 
       - name: Download dependencies
         run: mvn dependency:go-offline
