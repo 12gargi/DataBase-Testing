@@ -20,7 +20,7 @@ jobs:
         run: sudo service mysql stop
 
       - name: Set up MySQL
-        uses: mirromutth/mysql-action@v1.1 
+        uses: mirromutth/mysql-action@v2 
 
       - name: Download dependencies
         run: mvn dependency:go-offline
