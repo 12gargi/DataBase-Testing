@@ -1,33 +1,30 @@
-name: Database Testing Workflow
+version: 2
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+dependencies:
+  - type: js
+    path: ./
+    settings:
+      node_env: production
+      dist_tags:
+        semantic-release: next
+
+      github_labels:
+        - dependencies
+
+      github_assignees:
+        - djones
+
+      related_pr_behavior: close
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Download dependencies
-        run: mvn dependency:go-offline
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Database Testing
-        run: mvn test -Dtest=SchemaTests,StoreProcedureTests,TriggerTests
-
-      - name: Generate HTML REPORT FROM SUREFIRE_REPORTS
-        run: mvn surefire-report:report-only
-        continue-on-error: true
-
-      - name: Upload HTML Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: HTML-REPORT
-          path: target/site/
+      - name: Run tests
+        run: npm test
